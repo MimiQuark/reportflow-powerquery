@@ -1,4 +1,4 @@
-# Excel and Power Query Automated Operating Report
+# ReportFlow: Excel Power Query Automated Operating Reporting
 
 Automated Excel reporting project built with Power Query M, Python and Mashup OLEDB refresh validation.
 

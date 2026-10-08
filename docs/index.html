@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Excel + Power Query Automated Operating Report</title>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ReportFlow | Excel Power Query Automated Operating Reporting</title>
 <style>
 :root{--navy:#1f4e79;--blue:#2f80ed;--ink:#17212b;--muted:#64748b;--line:#dbe4ee;--bg:#f5f8fb}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.65 "Microsoft YaHei",Arial,sans-serif}
@@ -11,7 +11,7 @@ table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px 12p
 .actions{display:flex;gap:10px;flex-wrap:wrap}.actions a{text-decoration:none;background:var(--navy);color:#fff;padding:10px 14px;border-radius:8px}.actions a.alt{background:#fff;color:var(--navy);border:1px solid #b7c9d9}
 footer{text-align:center;color:var(--muted);margin-top:30px}@media(max-width:850px){.stats,.flow{grid-template-columns:1fr 1fr}.flow .step:last-child{grid-column:span 2}}
 </style></head><body><main>
-<header><h1>Excel + Power Query Automated Operating Report</h1><p class="lead">把 4 张源表自动清洗、关联、计算、汇总为可刷新经营看板。自动化核心不是“没有人工”，而是把重复处理步骤固化为可复用、可验证的数据流程。</p></header>
+<header><h1>ReportFlow | Excel Power Query Automated Operating Reporting</h1><p class="lead">把 4 张源表自动清洗、关联、计算、汇总为可刷新经营看板。自动化核心不是“没有人工”，而是把重复处理步骤固化为可复用、可验证的数据流程。</p></header>
 <section class="stats"><div class="stat"><b>4</b><span>源数据表</span></div><div class="stat"><b>10</b><span>Power Query 查询</span></div><div class="stat"><b>41,280</b><span>清理后事实行</span></div><div class="stat"><b>6/6</b><span>实际刷新通过</span></div></section>
 <section class="panel"><h2>自动化处理链路</h2><div class="flow"><div class="step"><b>1. 源数据</b>销售 / 商品 / 退货 / 目标</div><div class="step"><b>2. 清洗</b>类型转换与异常过滤</div><div class="step"><b>3. 关联</b>商品与订单数据合并</div><div class="step"><b>4. 计算</b>销售额、成本、毛利、完成率</div><div class="step"><b>5. 输出</b>看板 / 透视表 / 异常表</div></div></section>
 <section class="panel"><h2>一键刷新</h2><p>10 条查询全部嵌入工作簿。点击“数据 → 全部刷新”后，Excel 会按依赖顺序自动重新执行：<code>qry_fact_sales</code> 生成事实表，月度、品类、区域、退货和质量查询再基于事实表更新。无需手工复制、合并或重新计算指标。</p><img class="hero" src="assets/dashboard.png" alt="Excel Power Query dashboard"></section>
