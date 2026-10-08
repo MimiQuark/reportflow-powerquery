@@ -1,0 +1,55 @@
+{
+  "workbook": "H:\\Codex\\无指定项目目录\\02_excel_power_query_report\\output\\自动化经营报表-含PowerQuery.xlsx",
+  "testedAt": "2026-10-08T20:17:17",
+  "passed": true,
+  "results": [
+    {
+      "query": "qry_fact_sales",
+      "rows": 41281,
+      "columns": 17,
+      "passed": true
+    },
+    {
+      "query": "qry_monthly_kpi",
+      "rows": 37,
+      "columns": 9,
+      "passed": true
+    },
+    {
+      "query": "qry_category_kpi",
+      "rows": 9,
+      "columns": 7,
+      "passed": true
+    },
+    {
+      "query": "qry_region_kpi",
+      "rows": 8,
+      "columns": 7,
+      "passed": true
+    },
+    {
+      "query": "qry_return_summary",
+      "rows": 6,
+      "columns": 4,
+      "passed": true
+    },
+    {
+      "query": "qry_quality_issues",
+      "rows": 239,
+      "columns": 6,
+      "passed": true
+    },
+    {
+      "query": "qry_fact_sales_reusable",
+      "rows": 41281,
+      "columns": 17,
+      "passed": true
+    },
+    {
+      "query": "qry_refresh_log",
+      "rows": 2,
+      "columns": 4,
+      "passed": true
+    }
+  ]
+}

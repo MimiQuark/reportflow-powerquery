@@ -1,0 +1,16 @@
+{
+  "workbook": "H:\\Codex\\无指定项目目录\\02_excel_power_query_report\\output\\自动化经营报表-含PowerQuery.xlsx",
+  "queries": [
+    "fnGetParameter",
+    "fnGetSourceTable",
+    "qry_category_kpi",
+    "qry_fact_sales_reusable",
+    "qry_fact_sales",
+    "qry_monthly_kpi",
+    "qry_quality_issues",
+    "qry_refresh_log",
+    "qry_region_kpi",
+    "qry_return_summary"
+  ],
+  "queryCount": 10
+}

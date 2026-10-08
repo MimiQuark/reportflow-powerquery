@@ -33,8 +33,8 @@ class ExcelReportPipelineTest(unittest.TestCase):
         path = BASE_DIR / "output" / "powerquery_embed_report.json"
         self.assertTrue(path.exists(), "Run embed_power_queries.ps1 first")
         report = json.loads(path.read_text(encoding="utf-8-sig"))
-        self.assertEqual(report["queryCount"], 6)
-        self.assertEqual(set(report["queries"]), {"qry_fact_sales", "qry_monthly_kpi", "qry_category_kpi", "qry_region_kpi", "qry_return_summary", "qry_quality_issues"})
+        self.assertEqual(report["queryCount"], 10)
+        self.assertEqual(set(report["queries"]), {"qry_fact_sales", "qry_monthly_kpi", "qry_category_kpi", "qry_region_kpi", "qry_return_summary", "qry_quality_issues", "fnGetParameter", "fnGetSourceTable", "qry_fact_sales_reusable", "qry_refresh_log"})
 
     def test_power_query_refresh_report(self):
         path = BASE_DIR / "output" / "powerquery_refresh_report.json"

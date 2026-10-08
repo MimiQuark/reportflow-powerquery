@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "name": "事实表行数",
+      "actual": 41280,
+      "passed": true
+    },
+    {
+      "name": "订单行主键唯一",
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "无效商品行",
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "异常记录已识别",
+      "actual": 1510,
+      "passed": true
+    },
+    {
+      "name": "销售额公式错误",
+      "actual": 0,
+      "passed": true
+    },
+    {
+      "name": "毛利公式错误",
+      "actual": 0,
+      "passed": true
+    }
+  ]
+}

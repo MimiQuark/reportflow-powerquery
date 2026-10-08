@@ -2,7 +2,7 @@ $ErrorActionPreference = "Stop"
 $ProjectRoot = Split-Path -Parent $MyInvocation.MyCommand.Path | Split-Path -Parent
 $SourceWorkbook = Join-Path $ProjectRoot "output\自动化经营报表-含PowerQuery.xlsx"
 $TempWorkbook = Join-Path $env:TEMP ("automated_report_powerquery_" + [guid]::NewGuid().ToString("N") + ".xlsx")
-$Queries = @("qry_fact_sales", "qry_monthly_kpi", "qry_category_kpi", "qry_region_kpi", "qry_return_summary", "qry_quality_issues")
+$Queries = @("qry_fact_sales", "qry_monthly_kpi", "qry_category_kpi", "qry_region_kpi", "qry_return_summary", "qry_quality_issues", "qry_fact_sales_reusable", "qry_refresh_log")
 Copy-Item -LiteralPath $SourceWorkbook -Destination $TempWorkbook -Force
 
 $results = @()

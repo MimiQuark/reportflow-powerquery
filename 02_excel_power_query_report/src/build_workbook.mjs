@@ -85,6 +85,31 @@ const rawTargets = await importCsv(workbook, path.join(rawDir, "raw_targets.csv"
 const factSales = await importCsv(workbook, path.join(processedDir, "fact_sales.csv"), "fact_sales", "fact_sales", ["LineNo", "Quantity", "UnitPrice", "DiscountRate", "SalesAmount", "CostAmount", "GrossProfit"]);
 const qualityIssues = await importCsv(workbook, path.join(processedDir, "data_quality_issues.csv"), "data_quality_issues", "data_quality_issues");
 
+const configSheet = workbook.worksheets.add("配置参数");
+configSheet.getRange("A1:B1").merge();
+configSheet.getRange("A1").values = [["自动化报表配置参数"]];
+configSheet.getRange("A1").format = { fill: navy, font: { name: font, size: 16, bold: true, color: "#FFFFFF" }, alignment: { horizontal: "left", vertical: "center" } };
+configSheet.getRange("A3:B3").values = [["Parameter", "Value"]];
+const configRows = [
+  ["SourceMode", "WorkbookTables"],
+  ["SourceFolder", ""],
+  ["SalesFile", "raw_sales.csv"],
+  ["ProductsFile", "raw_products.csv"],
+  ["ReturnsFile", "raw_returns.csv"],
+  ["TargetsFile", "raw_targets.csv"],
+  ["MinQuantity", "1"],
+  ["MaxDiscountRate", "0.5"],
+  ["RemoveDuplicates", "TRUE"],
+  ["FailOnInvalidProduct", "FALSE"],
+  ["ReportName", "自动化经营报表"],
+  ["Version", "v1.1.0"],
+  ["RefreshLogEnabled", "TRUE"]
+];
+configSheet.getRange(`A4:B${3 + configRows.length}`).values = configRows;
+configSheet.getRange("A3:B3").format = { fill: blue, font: { name: font, bold: true, color: "#FFFFFF" } };
+configSheet.getRange("A1:B3").format.font.name = font;
+configSheet.tables.add(`A3:B${3 + configRows.length}`, true, "config_parameters");
+configSheet.getRange("A:B").format.columnWidthPx = 150;
 const summary = summarize(factSales.rows);
 const targetByMonth = new Map();
 for (const row of rawTargets.rows) targetByMonth.set(row[0], (targetByMonth.get(row[0]) || 0) + number(row[2]));
@@ -135,6 +160,13 @@ dashboard.getRange("A1").format = { fill: navy, font: { name: font, size: 20, bo
 dashboard.getRange("A2:L2").merge();
 dashboard.getRange("A2").values = [["数据源：raw_sales / raw_products / raw_returns / raw_targets  |  刷新方式：数据 → 全部刷新"]];
 dashboard.getRange("A2").format = { fill: lightBlue, font: { name: font, size: 10, color: gray } };
+dashboard.getRange("A:L").format = { columnWidthPx: 125 };
+dashboard.getRange("A1:L1").format = { rowHeightPx: 32 };
+dashboard.getRange("A2:L2").format = { rowHeightPx: 22 };
+dashboard.getRange("A4:L4").format = { rowHeightPx: 22 };
+dashboard.getRange("A5:L5").format = { rowHeightPx: 34 };
+dashboard.getRange("A7:L7").format = { rowHeightPx: 22 };
+dashboard.getRange("A8:L8").format = { rowHeightPx: 34 };
 addKpiCard(dashboard, "A4", "销售额", "=SUM(fact_sales[SalesAmount])", "¥#,##0", navy);
 addKpiCard(dashboard, "D4", "成本", "=SUM(fact_sales[CostAmount])", "¥#,##0", gray);
 addKpiCard(dashboard, "G4", "毛利", "=SUM(fact_sales[GrossProfit])", "¥#,##0", green);
@@ -172,6 +204,10 @@ querySheet.getRange("A1").values = [["Power Query 自动化处理说明"]];
 querySheet.getRange("A1").format = { fill: navy, font: { name: font, size: 16, bold: true, color: "#FFFFFF" } };
 querySheet.getRange("A3:F3").values = [["查询", "输入", "输出", "用途", "刷新方式", "文件"]];
 const queryRows = [
+  ["fnGetParameter", "config_parameters", "parameter", "读取配置参数", "数据 → 全部刷新", "fnGetParameter.pq"],
+  ["fnGetSourceTable", "config_parameters", "source table", "切换工作簿表或文件夹数据源", "数据 → 全部刷新", "fnGetSourceTable.pq"],
+  ["qry_fact_sales_reusable", "配置参数 + 源表", "reusable_fact_sales", "参数化清洗与事实表生成", "数据 → 全部刷新", "qry_fact_sales_reusable.pq"],
+  ["qry_refresh_log", "配置参数 + 可复用事实表", "refresh_log", "记录刷新时间、版本和行数", "数据 → 全部刷新", "qry_refresh_log.pq"],
   ["qry_fact_sales", "raw_sales + raw_products", "fact_sales", "清洗销售明细并计算金额、成本和毛利", "数据 → 全部刷新", "qry_fact_sales.pq"],
   ["qry_monthly_kpi", "fact_sales + raw_targets", "monthly_kpi", "月度销售、毛利、目标和环比", "数据 → 全部刷新", "qry_monthly_kpi.pq"],
   ["qry_category_kpi", "fact_sales", "category_kpi", "品类销售与利润分析", "数据 → 全部刷新", "qry_category_kpi.pq"],

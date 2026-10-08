@@ -16,3 +16,7 @@ Run: `.\02_excel_power_query_report\run.ps1`
 - One-click refresh through Excel Data > Refresh All.
 - Query flow: clean -> merge -> calculate -> aggregate -> dashboard.
 - 6/6 queries passed real Mashup OLEDB refresh tests.
+## Reusable configuration
+
+The workbook contains a `config_parameters` table. Set `SourceMode` to `WorkbookTables` or `Folder`, then configure the source folder, file names, minimum quantity, maximum discount, report name and version. The reusable query `qry_fact_sales_reusable` uses these parameters, and `qry_refresh_log` records refresh time, report, version and source mode. Ten queries are embedded in the final workbook.
+Refresh evidence: docs/assets/powerquery-refresh-report.json
